@@ -1,9 +1,9 @@
 import {LitElement} from './node_modules/@polymer/lit-element/lit-element.js'
 import { html } from './node_modules/lit-html/lib/lit-extended.js';
+import { boilerplateStyles } from './boilerplate-styles.js';
 
-class AppShell extends LitElement {
+class MySweetValentine extends LitElement {
 
-	// Public property API that triggers re-render (synched with attributes)
   static get properties() {
     return {
 			picture: String,
@@ -22,11 +22,14 @@ class AppShell extends LitElement {
 	constructor() {
 		super();
 
-		fetch('https://res.cloudinary.com/productcafe/image/upload/v1517795469/qwt_bunny.jpg').then(r => this.picture = r.url);
+		this.picture = 'https://res.cloudinary.com/productcafe/image/upload/v1517795469/lit-html/qwt_bunny.jpg';
+
 	}
 
   render({picture,text}) {
     return html`
+			${boilerplateStyles};
+
 			<style>
 				:host {
 					--pink: #f44289;
@@ -42,56 +45,14 @@ class AppShell extends LitElement {
 
 				h1 {
 					color: var(--pink);
-					font-family: Arial;
-				}
-
-				section {
-					background: white;
-					max-width: 600px;
-
-					padding: 20px;
-					margin: 0 auto;
-					position: relative;
-				  top: 50%;
-				  transform: translateY(-50%);
-
 				}
 
 				input {
-					border: none;
-					padding: 6px;
-					width: 100%;
 					border-bottom: 1px solid var(--pink);
-					outline: none;
-					margin-bottom: 20px;
 				}
 
 				input:focus {
 					border-bottom: 2px solid var(--pink);
-					margin-bottom: 19px;
-				}
-
-				img {
-					width: 100%;
-				}
-
-				a {
-					outline: none;
-				}
-
-				#button {
-					background: white;
-					width: 30px;
-					border-radius: 2px;
-					padding: 5px;
-					position: fixed;
-					top: 15px;
-					right: 15px;
-				}
-
-				h1 {
-					margin: 0;
-					margin-bottom: 20px;
 				}
 			</style>
 
@@ -99,12 +60,10 @@ class AppShell extends LitElement {
 			<section>
 				<h1>Pawsome Valentine's Image Generator</h1>
 
-				<div>
-					<input placeholder='type in a cute phrase plz' on-change=${e => {
-						this.text = e.target.value.toUpperCase();
-						this.generateImage();
-					}}></input>
-				</div>
+				<input placeholder='type in a cute phrase plz' on-change=${e => {
+					this.text = e.target.value.toUpperCase();
+					this.generateImage();
+				}}></input>
 
 				<a href='${picture}' id='button' download>
 					<img src='https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_file_download_black_24px.svg'></img>
@@ -119,4 +78,4 @@ class AppShell extends LitElement {
 
 }
 
-customElements.define('app-shell', AppShell);
+customElements.define('my-sweet-valentine', MySweetValentine);
