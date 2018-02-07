@@ -28,7 +28,7 @@ class MySweetValentine extends LitElement {
 
   render({picture,text}) {
     return html`
-			${boilerplateStyles};
+			${boilerplateStyles}
 
 			<style>
 				:host {
